@@ -1,0 +1,8 @@
+{
+  "name": "create-directory-map-tool",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "check": "node tests/urlutil-check.js"
+  }
+}

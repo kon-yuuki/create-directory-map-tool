@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Map Inventory Tool</title>
+    <?!= include('ui/styles'); ?>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Site Map Inventory Tool</h1>
+
+      <form id="run-form" class="panel">
+        <label>Spreadsheet URL or ID *</label>
+        <input type="text" name="sheet" required placeholder="https://docs.google.com/spreadsheets/...">
+
+        <label>Execution Mode</label>
+        <select name="mode">
+          <option value="sitemap_only">sitemap_only</option>
+          <option value="sitemap_plus_page_fetch" selected>sitemap_plus_page_fetch</option>
+        </select>
+
+        <label class="inline"><input type="checkbox" name="fetch_title" checked> Fetch title</label>
+        <label class="inline"><input type="checkbox" name="fetch_status" checked> Fetch status</label>
+        <label class="inline"><input type="checkbox" name="clear_before_write" checked> Clear rows before write</label>
+
+        <button type="submit">Run</button>
+      </form>
+
+      <section class="panel">
+        <h2>Result</h2>
+        <pre id="result">Not started.</pre>
+      </section>
+    </main>
+
+    <?!= include('ui/scripts'); ?>
+  </body>
+</html>

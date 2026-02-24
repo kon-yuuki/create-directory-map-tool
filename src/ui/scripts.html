@@ -1,0 +1,31 @@
+<script>
+  (function () {
+    var form = document.getElementById('run-form');
+    var resultEl = document.getElementById('result');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      resultEl.textContent = 'Running...';
+
+      var fd = new FormData(form);
+      var payload = {};
+
+      fd.forEach(function (value, key) {
+        payload[key] = value;
+      });
+
+      payload.fetch_title = !!form.querySelector('[name="fetch_title"]').checked;
+      payload.fetch_status = !!form.querySelector('[name="fetch_status"]').checked;
+      payload.clear_before_write = !!form.querySelector('[name="clear_before_write"]').checked;
+
+      google.script.run
+        .withSuccessHandler(function (res) {
+          resultEl.textContent = JSON.stringify(res, null, 2);
+        })
+        .withFailureHandler(function (err) {
+          resultEl.textContent = 'FAILED\n' + (err && err.message ? err.message : String(err));
+        })
+        .runFromWeb(payload);
+    });
+  })();
+</script>
